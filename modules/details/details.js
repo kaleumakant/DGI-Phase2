@@ -155,6 +155,7 @@ DgcControllers.controller("ListController", ['$scope','$http', '$filter','$state
             $scope.pagedItems = [];
             $scope.currentPage = 0;
             $scope.itemlength=0;
+			$scope.noofresults=0;
             $scope.configdata=[];
             $scope.results=[];
             $scope.datatype="";
@@ -171,7 +172,7 @@ DgcControllers.controller("ListController", ['$scope','$http', '$filter','$state
                     if(!$scope.isUndefined($scope.entities)){
                         $scope.itemlength=$scope.entities.length;
                         $scope.datatype=data.results.dataType.typeName;
-
+						$scope.noofresults=1;
                         var i=0;
                         angular.forEach($scope.configdata, function(values, key) {
                             if (key === data.results.dataType.typeName) {
@@ -218,6 +219,7 @@ DgcControllers.controller("ListController", ['$scope','$http', '$filter','$state
                 })
                  .error(function () {
                      alert("Sorry No response");
+					 $scope.noofresults=1;
 //                     $scope.iserror=true;
 //                     $scope.error=e;
 
